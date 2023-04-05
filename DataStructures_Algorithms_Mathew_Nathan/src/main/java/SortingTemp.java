@@ -15,6 +15,22 @@ public class SortingTemp {
         return collectionOut;
     }
 
+    public static <T extends Swappable> T sort (T collection) {
+        if (collection == null || collection.size() <= 1) {
+
+        }
+        return quickSort(collection, 0, collection.size() - 1);
+    }
+
+    public static <T extends Swappable> T quickSort(T collection, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(collection, low, high);
+            quickSort(collection, low, partitionIndex - 1);
+            quickSort(collection, partitionIndex + 1, high);
+        }
+        return collection;
+    }
+
     public static <T extends Swappable> int partition(T collection, int low, int high) {
         Comparable pivot = collection.get(high);
         int i = low - 1;
@@ -26,20 +42,5 @@ public class SortingTemp {
         }
         collection.swap(i + 1, high);
         return i + 1;
-    }
-
-    public static <T extends Swappable> void quickSort(T collection, int low, int high) {
-        if (low < high) {
-            int partitionIndex = partition(collection, low, high);
-            quickSort(collection, low, partitionIndex - 1);
-            quickSort(collection, partitionIndex + 1, high);
-        }
-    }
-
-    public static <T extends Swappable> void sort (T collection) {
-        if (collection == null || collection.size() <= 1) {
-            return;
-        }
-        quickSort(collection, 0, collection.size() - 1);
     }
 }

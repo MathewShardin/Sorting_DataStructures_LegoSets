@@ -19,14 +19,23 @@ public class Main {
         SortingTemp.partition(testSet,0,2);//Testing if crashes here
         SortingTemp.quickSort(testSet,0,2);//Testing if crashes here
         SortingTemp.sort(testSet);
+        SortingTemp.sort(listTest);
 
         System.out.println("");
+        System.out.println("");
+
+        for (int i = 0; i < listTest.size(); i++) {
+            System.out.println(listTest.get(i).getName() + " ");
+        }
+
         System.out.println("");
         System.out.println("");
 
         for (int i = 0; i < testSet.size(); i++) {
             System.out.println(testSet.get(i).getName() + " ");
         }
+
+        System.out.println(SearchTemp.jumpSearchLegoSetByName("Castle Mini Figures",testSet));
 
 //        String one = "test";
 //        String two = "testtest";
