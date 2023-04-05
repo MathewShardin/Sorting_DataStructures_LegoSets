@@ -34,14 +34,17 @@ public class LegoSet implements Comparable<LegoSet> {
     }
 
 
-    // Compare on Number Of parts
+    // Compare on Names
     @Override
     public int compareTo(LegoSet set) {
-        if (this.num_of_parts == set.getNum_of_parts()) {
+        // Make both names lowercase to ensure correct comparison
+        String setOneName = this.getName().toLowerCase();
+        String setTwoName = set.getName().toLowerCase();
+
+        if (setOneName.compareTo(setTwoName) == 0) {
             return 0;
         }
-
-        if (this.num_of_parts > set.getNum_of_parts()) {
+        if (setOneName.compareTo(setTwoName) > 0) {
             return 1;
         }
 
