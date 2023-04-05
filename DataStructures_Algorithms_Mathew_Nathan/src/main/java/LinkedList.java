@@ -108,10 +108,17 @@ public class LinkedList<T extends Comparable> implements Swappable {
     }
 
     @Override
+    public T get(int index) {
+        Node nodeTemp = getNodeAtLocation(index);
+        return nodeTemp.data;
+    }
+
+    @Override
     public void swap(int index1, int index2) {
         if (index1 == index2) {
             return;
         }
+        //Traverse the List
         Node prevNode1 = null;
         Node currNode1 = head;
         int count1 = 0;
@@ -120,6 +127,7 @@ public class LinkedList<T extends Comparable> implements Swappable {
             currNode1 = currNode1.next;
             count1++;
         }
+        // Traverse list for second index
         Node prevNode2 = null;
         Node currNode2 = head;
         int count2 = 0;
@@ -131,6 +139,7 @@ public class LinkedList<T extends Comparable> implements Swappable {
         if (currNode1 == null || currNode2 == null) {
             return;
         }
+        //Swap nodes
         if (prevNode1 != null) {
             prevNode1.next = currNode2;
         } else {
