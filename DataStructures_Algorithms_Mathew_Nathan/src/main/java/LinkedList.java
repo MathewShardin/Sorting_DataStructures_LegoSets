@@ -107,90 +107,43 @@ public class LinkedList<T extends Comparable> implements Swappable {
         return counter;
     }
 
-    //Swaps two elements Nodes of the linked list places
-//    @Override
-//    public void swap(int firstIndex, int secondIndex) {
-//        if (firstIndex < 0 || secondIndex < 0) {throw new IllegalArgumentException("Index cannot be negative");}
-//        if (firstIndex == secondIndex) {return;}
-//
-//        //Find node previous to firstIndex node
-//        Node nodeBeforeFirst = this.head;
-//        Node firstIndexNode = null;
-//        if (firstIndex != 0) {
-//            for (int i = 0; i < firstIndex - 1; i++) {
-//                if (nodeBeforeFirst == null) {throw new IllegalArgumentException("Index out of bounds");}
-//                nodeBeforeFirst = nodeBeforeFirst.next;
-//            }
-//            firstIndexNode = nodeBeforeFirst.next;
-//        } else {
-//            firstIndexNode = nodeBeforeFirst;
-//        }
-//
-//        //Find node previous to secondIndex node
-//        Node nodeBeforeSecond = this.head;
-//        Node secondIndexNode = null;
-//        if (secondIndex != 0) {
-//            for (int i = 0; i < secondIndex - 1; i++) {
-//                if (nodeBeforeSecond == null) {throw new IllegalArgumentException("Index out of bounds");}
-//                nodeBeforeSecond = nodeBeforeSecond.next;
-//            }
-//            secondIndexNode = nodeBeforeSecond.next;
-//        } else {
-//            secondIndexNode = nodeBeforeSecond;
-//        }
-//
-//        //Swap connection on the firstIndex and secondIndex nodes
-//        Node nodeTemp = firstIndexNode.next;
-//        firstIndexNode.next = secondIndexNode.next;
-//        secondIndexNode.next = nodeTemp;
-//
-//        //Swap connection on nodes previous to firstIndex and secondIndex
-//        nodeTemp = nodeBeforeFirst.next;
-//        nodeBeforeFirst.next = nodeBeforeSecond.next;
-//        nodeBeforeSecond.next = nodeTemp;
-//    }
-
-    //Swaps two elements Nodes of the linked list places
     @Override
-    public void swap(int firstIndex, int secondIndex) {
-        //Validate arguments
-        if (firstIndex < 0 || secondIndex < 0) {throw new IllegalArgumentException("Index cannot be negative");}
-        if (firstIndex == secondIndex) {return;}
-
-        //Swap two adjacent elements places
-        if (secondIndex - firstIndex == 1 || firstIndex - secondIndex == 1) {
-
+    public void swap(int index1, int index2) {
+        if (index1 == index2) {
+            return;
         }
-
-
-
-        //Find node previous to firstIndex node
-        Node nodeBeforeFirst = this.head;
-        Node firstIndexNode = null;
-        for (int i = 0; i < firstIndex - 1; i++) {
-            if (nodeBeforeFirst == null) {throw new IllegalArgumentException("Index out of bounds");}
-            nodeBeforeFirst = nodeBeforeFirst.next;
+        Node prevNode1 = null;
+        Node currNode1 = head;
+        int count1 = 0;
+        while (currNode1 != null && count1 != index1) {
+            prevNode1 = currNode1;
+            currNode1 = currNode1.next;
+            count1++;
         }
-        firstIndexNode = nodeBeforeFirst.next;
-
-        //Find node previous to secondIndex node
-        Node nodeBeforeSecond = this.head;
-        Node secondIndexNode = null;
-        for (int i = 0; i < secondIndex - 1; i++) {
-            if (nodeBeforeSecond == null) {throw new IllegalArgumentException("Index out of bounds");}
-            nodeBeforeSecond = nodeBeforeSecond.next;
+        Node prevNode2 = null;
+        Node currNode2 = head;
+        int count2 = 0;
+        while (currNode2 != null && count2 != index2) {
+            prevNode2 = currNode2;
+            currNode2 = currNode2.next;
+            count2++;
         }
-        secondIndexNode = nodeBeforeSecond.next;
-
-        //Swap connection on the firstIndex and secondIndex nodes
-        Node nodeTemp = firstIndexNode.next;
-        firstIndexNode.next = secondIndexNode.next;
-        secondIndexNode.next = nodeTemp;
-
-        //Swap connection on nodes previous to firstIndex and secondIndex
-        nodeTemp = nodeBeforeFirst.next;
-        nodeBeforeFirst.next = nodeBeforeSecond.next;
-        nodeBeforeSecond.next = nodeTemp;
+        if (currNode1 == null || currNode2 == null) {
+            return;
+        }
+        if (prevNode1 != null) {
+            prevNode1.next = currNode2;
+        } else {
+            head = currNode2;
+        }
+        if (prevNode2 != null) {
+            prevNode2.next = currNode1;
+        } else {
+            head = currNode1;
+        }
+        Node temp = currNode1.next;
+        currNode1.next = currNode2.next;
+        currNode2.next = temp;
     }
 
 
