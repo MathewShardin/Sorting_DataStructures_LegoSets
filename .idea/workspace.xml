@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7d6a663-de4d-47f3-b690-66db9672530e" name="Changes" comment="" />
+    <list default="true" id="a7d6a663-de4d-47f3-b690-66db9672530e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +29,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/University/Semester_2/Data Structures & Algorithms/Sorting_DataStructures_LegoSets",
+    "last_opened_file_path": "C:/Users/Nathan/OneDrive - NHL Stenden/NHL Uni work/GitHub/Sorting_DataStructures_LegoSets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -36,6 +46,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679668439169</updated>
       <workItem from="1679668440499" duration="57000" />
+      <workItem from="1680617412856" duration="887000" />
     </task>
     <servers />
   </component>
