@@ -16,8 +16,8 @@ public class CSVParser {
                 String[] fieldValuesTemp = new String[5]; //set_num, name, year, theme_id, num_parts
                 int counterField = 0;
                 for (String field : nextLine) {
-                    counterField++;
                     fieldValuesTemp[counterField] = field;
+                    counterField++;
                 }
                 LegoSet setTemp = new LegoSet(fieldValuesTemp[1], Integer.parseInt(fieldValuesTemp[2]), Integer.parseInt(fieldValuesTemp[4]));
                 setOutput[insertCounter] = setTemp;
