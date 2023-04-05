@@ -1,4 +1,4 @@
-public class CustomArrayList<T> {
+public class CustomArrayList<T extends Comparable> implements Swappable {
     private static final int INITIAL_CAPACITY = 10;
     private Object[] elements;
     private int size;
@@ -19,6 +19,21 @@ public class CustomArrayList<T> {
         }
         return (T) this.elements[index];
     }
+
+
+    @Override
+    public void swap(int firstIndex, int secondIndex) {
+        Object[] tempArray = this.elements;
+        Object temp1 = this.elements[firstIndex];
+        Object temp2 = this.elements[secondIndex];
+        tempArray[firstIndex] = temp2;
+        tempArray[secondIndex] = temp1;
+        setElements(tempArray);
+    }
+    public void setElements(Object[] elements) {
+        this.elements = elements;
+    }
+
 
     public int size() {
         return this.size;
