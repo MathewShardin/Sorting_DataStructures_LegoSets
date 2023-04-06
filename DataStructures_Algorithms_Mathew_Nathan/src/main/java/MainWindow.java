@@ -98,7 +98,12 @@ public class MainWindow extends JFrame {
         for (LegoSet set : tempArray) {
             inputLinkedList.insertLast(set);
         }
+        //TODO
         //Parse data into custom Doubly Linked List
+        //DoublyLinkedList<LegoSet> doublyInput = new DoublyLinkedList<>();
+//        for (LegoSet set : tempArray) {
+//            doublyInput.insertLast(set);
+//        }
 
 
         String[] inputData = getArrayStringsLegoSets(inputArrayList);
@@ -216,6 +221,53 @@ public class MainWindow extends JFrame {
         });
 
         //Doubly Linked List
+        buttonDoubleBub.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
+                //TODO
+                //CHANGE ARRAYLIST TO DOUBLY LINK LIST HERE AND CHANGE INPUTARRAYLIST TO INPUT DOUBLYLINKLIST
+                CustomArrayList<LegoSet> outputArray = SortingTemp.bubbleSort(inputArrayList);
+                long endTime = System.nanoTime();
+                listOutput.setListData(getArrayStringsLegoSets(outputArray));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
+
+            }
+        });
+        buttonDoubleQui.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
+                //TODO
+                CustomArrayList<LegoSet> outputArray = SortingTemp.sort(inputArrayList);
+                long endTime = System.nanoTime();
+                listOutput.setListData(getArrayStringsLegoSets(outputArray));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
+
+            }
+        });
+        buttonDoubleJump.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
+                //TODO
+                Comparable<?> result = SearchTemp.jumpSearchLegoSetByName(textField.getText(), inputArrayList);
+                long endTime = System.nanoTime();
+                listOutput.setListData(getArrayOneSearchResultString(result));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
+            }
+        });
+        buttonDoubleBin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
+                //TODO
+                Comparable<?> result = SearchTemp.binarySearchLegoSetByName(textField.getText(), inputArrayList);
+                long endTime = System.nanoTime();
+                listOutput.setListData(getArrayOneSearchResultString(result));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
+            }
+        });
 
         //--------------------------------------------------------------------------
 
