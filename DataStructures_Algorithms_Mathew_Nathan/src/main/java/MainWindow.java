@@ -264,6 +264,10 @@ public class MainWindow extends JFrame {
     public <T extends Comparable> String[] getArrayOneSearchResultString(T result) {
         LegoSet setResult = (LegoSet) result;
         String[] arrayOut = new String[1];
+        if (setResult == null) {
+            arrayOut[0] = "None found. Please input name exactly as an existing dataset";
+            return arrayOut;
+        }
         String setString = setResult.getName() + " " + setResult.getYearOfRelease() + " " + setResult.getNum_of_parts();
         arrayOut[0] = setString;
         return arrayOut;
