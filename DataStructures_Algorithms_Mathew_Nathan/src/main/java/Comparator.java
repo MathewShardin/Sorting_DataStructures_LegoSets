@@ -1,16 +1,16 @@
 public class Comparator implements java.util.Comparator<LegoSet> {
 
-    // Compare on Name
+    // Compare on Num of Parts
     @Override
     public int compare(LegoSet set1, LegoSet set2) {
         // Make both names lowercase to ensure correct comparison
-        String setOneName = set1.getName().toLowerCase();
-        String setTwoName = set2.getName().toLowerCase();
+        int setOneParts = set1.getNum_of_parts();
+        int setTwoParts = set2.getNum_of_parts();
 
-        if (setOneName.compareTo(setTwoName) == 0) {
+        if (setOneParts == setTwoParts) {
             return 0;
         }
-        if (setOneName.compareTo(setTwoName) > 0) {
+        if (setOneParts > setTwoParts) {
             return 1;
         }
 

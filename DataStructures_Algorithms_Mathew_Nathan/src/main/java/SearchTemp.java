@@ -1,6 +1,6 @@
 public class SearchTemp {
-    public static <T extends Swappable, E extends Comparable> E binarySearch(T collection, E key) {
-        T collectionOut = SortingTemp.bubbleSort(collection);
+    public static <T extends Swappable, E extends Comparable> E binarySearch(T coll, E key) {
+        T collection = SortingTemp.bubbleSort(coll);
 
         int left = 0;
         int right = collection.size() - 1;
