@@ -98,12 +98,11 @@ public class MainWindow extends JFrame {
         for (LegoSet set : tempArray) {
             inputLinkedList.insertLast(set);
         }
-        //TODO
         //Parse data into custom Doubly Linked List
-        //DoublyLinkedList<LegoSet> doublyInput = new DoublyLinkedList<>();
-//        for (LegoSet set : tempArray) {
-//            doublyInput.insertLast(set);
-//        }
+        DoublyLinkedList<LegoSet> doublyInput = new DoublyLinkedList<>();
+        for (LegoSet set : tempArray) {
+            doublyInput.insertLast(set);
+        }
 
 
         String[] inputData = getArrayStringsLegoSets(inputArrayList);
@@ -224,11 +223,9 @@ public class MainWindow extends JFrame {
         buttonDoubleBub.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 long startTime = System.nanoTime();
-                //TODO
-                //CHANGE ARRAYLIST TO DOUBLY LINK LIST HERE AND CHANGE INPUTARRAYLIST TO INPUT DOUBLYLINKLIST
-                CustomArrayList<LegoSet> outputArray = SortingTemp.bubbleSort(inputArrayList);
+                DoublyLinkedList<LegoSet> outputDoubly = SortingTemp.bubbleSort(doublyInput);
                 long endTime = System.nanoTime();
-                listOutput.setListData(getArrayStringsLegoSets(outputArray));
+                listOutput.setListData(getArrayStringsLegoSets(outputDoubly));
                 long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
                 timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
 
@@ -237,10 +234,9 @@ public class MainWindow extends JFrame {
         buttonDoubleQui.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 long startTime = System.nanoTime();
-                //TODO
-                CustomArrayList<LegoSet> outputArray = SortingTemp.sort(inputArrayList);
+                DoublyLinkedList<LegoSet> outputDoubly = SortingTemp.sort(doublyInput);
                 long endTime = System.nanoTime();
-                listOutput.setListData(getArrayStringsLegoSets(outputArray));
+                listOutput.setListData(getArrayStringsLegoSets(outputDoubly));
                 long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
                 timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
 
@@ -249,8 +245,7 @@ public class MainWindow extends JFrame {
         buttonDoubleJump.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 long startTime = System.nanoTime();
-                //TODO
-                Comparable<?> result = SearchTemp.jumpSearchLegoSetByName(textField.getText(), inputArrayList);
+                Comparable<?> result = SearchTemp.jumpSearchLegoSetByName(textField.getText(), doublyInput);
                 long endTime = System.nanoTime();
                 listOutput.setListData(getArrayOneSearchResultString(result));
                 long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
@@ -260,8 +255,7 @@ public class MainWindow extends JFrame {
         buttonDoubleBin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 long startTime = System.nanoTime();
-                //TODO
-                Comparable<?> result = SearchTemp.binarySearchLegoSetByName(textField.getText(), inputArrayList);
+                Comparable<?> result = SearchTemp.binarySearchLegoSetByName(textField.getText(), doublyInput);
                 long endTime = System.nanoTime();
                 listOutput.setListData(getArrayOneSearchResultString(result));
                 long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
@@ -270,12 +264,6 @@ public class MainWindow extends JFrame {
         });
 
         //--------------------------------------------------------------------------
-
-
-
-
-
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

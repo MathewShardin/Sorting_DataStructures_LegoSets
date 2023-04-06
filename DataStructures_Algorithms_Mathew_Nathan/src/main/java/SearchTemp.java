@@ -5,8 +5,9 @@ public class SearchTemp {
         int left = 0;
         int right = collection.size() - 1;
 
+        int mid = left + (right - left) / 2;;
         while (left <= right) {
-            int mid = left + (right - left) / 2;
+            mid = left + (right - left) / 2;
 
             int cmp = key.compareTo(collection.get(mid));
             if (cmp == 0) {
@@ -17,8 +18,8 @@ public class SearchTemp {
                 left = mid + 1;
             }
         }
-        //If not found
-        return null;
+        //If not found return closest value
+        return (E) collection.get(mid+1);
     }
 
     public static <T extends Swappable> LegoSet binarySearchLegoSetByName(String name, T collection) {
