@@ -37,10 +37,10 @@ public class SearchTemp {
             prev += forward;
         }
         int back = prev - forward;
-        while (back < prev && collection.get(back).compareTo(key) < 0){
+        while (back <= prev && collection.get(back).compareTo(key) < 0){
             back++;
         }
-        if (back >= prev && collection.get(back).compareTo(key) != back){
+        if (back >= prev && collection.get(back).compareTo(key) != 0){
             //does not exist
             return null;
         }

@@ -3,16 +3,20 @@ import org.w3c.dom.Node;
 
 import java.util.Collections;
 
-public class LinkedList<T extends Comparable> implements Swappable {
+public class DoublyLinkedList<T extends Comparable> implements Swappable {
     Node head;
+
+    Node tail;
 
     class Node {
         T data;
         Node next;
+        Node prev;
 
         Node(T a) {
             data = a;
             next = null;
+            prev = null;
         }
     }
 
@@ -30,69 +34,84 @@ public class LinkedList<T extends Comparable> implements Swappable {
         while (lastNode.next != null) {
             lastNode = lastNode.next;
         }
+        nodeInsert.prev = lastNode;
         lastNode.next = nodeInsert;
     }
 
+    public void insertFirst(T data) {
+        Node nodeInsert = new Node(data);
+
+        if (tail != null) {
+            tail.next = nodeInsert;
+        } else {
+            head = nodeInsert;
+        }
+        tail = nodeInsert;
+    }
+
+/*    public void insertAtLocation(int index, T data) {
+        if (index < 0 || size() < index) {throw new IllegalArgumentException("Index cannot be negative or out of bounds");}
+        Node nodeInsert = new Node(data);
+
+        //Traverse through the LinkedList
+        Node currentNode = this.head;
+
+        for (int i = 0; i < index - 1; i++) {
+            currentNode = currentNode.next;
+        }
+        //Make new node head of the list if insertion is required at index 0
+        if (index == 0) {
+            nodeInsert.next = currentNode;
+            this.head = nodeInsert;
+        } else {
+            nodeInsert.next = currentNode.next;
+            currentNode.next = nodeInsert;
+        }
+    }*/
+
     //Return node at specified index. (Index starts from 0)
     public Node getNodeAtLocation(int index) {
-        if (index < 0) {throw new IllegalArgumentException("Index cannot be negative");}
+        if (index < 0 || index >= size()) {throw new IllegalArgumentException("Index cannot be negative or out of bounds");}
 
         //Traverse through the LinkedList
         Node lastNode = this.head;
 
         for (int i = 0; i < index; i++) {
-            if (lastNode == null) {throw new IllegalArgumentException("Index out of bounds");}
             lastNode = lastNode.next;
         }
-
         return lastNode;
     }
 
-    public void insertAtLocation(int index, T data) {
-        if (index < 0) {throw new IllegalArgumentException("Index cannot be negative");}
-        Node nodeInsert = new Node(data);
-
-        //Traverse through the LinkedList
-        Node lastNode = this.head;
-
-        for (int i = 0; i < index - 1; i++) {
-            if (lastNode == null) {throw new IllegalArgumentException("Index out of bounds");}
-            lastNode = lastNode.next;
-        }
-
-        //Make new node head of the list if insertion is required at index 0
-        if (index == 0) {
-            nodeInsert.next = lastNode;
-            this.head = nodeInsert;
-        } else {
-            nodeInsert.next = lastNode.next;
-            lastNode.next = nodeInsert;
-        }
-
-    }
-
     public void removeAtLocation(int index) {
-        if (index < 0) {throw new IllegalArgumentException("Index cannot be negative");}
+        if (index < 0 || index >= size()) {throw new IllegalArgumentException("Index cannot be negative or out of bounds");}
 
         //Traverse through the LinkedList
         Node currentNode = this.head;
 
-        //Find Node 1 position before the node to be removed
-        for (int i = 0; i < index - 1; i++) {
-            if (currentNode == null) {throw new IllegalArgumentException("Index out of bounds");}
+        if (index == 0) {
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            }
+            return;
+        }
+        for (int i = 0; i < index; i++) {
             currentNode = currentNode.next;
         }
         if (size() == 1) {
             Node tempNode = currentNode;
 
             tempNode.next = null;
+            tempNode.prev = null;
         } else {
             Node tempNode = currentNode;
             //Save pointer of the node to be removed
             currentNode = currentNode.next;
             Node pointerNext = currentNode.next;
+            Node pointerPrev = currentNode.prev;
             //Set pointer of Node at index-1 to index+1
             tempNode.next = pointerNext;
+            tempNode.prev = pointerPrev;
         }
     }
 
@@ -159,9 +178,4 @@ public class LinkedList<T extends Comparable> implements Swappable {
         currNode1.next = currNode2.next;
         currNode2.next = temp;
     }
-
-
-
-
-
 }
