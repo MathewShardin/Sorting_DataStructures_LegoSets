@@ -1,5 +1,5 @@
 import com.opencsv.exceptions.CsvValidationException;
-
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -82,6 +82,10 @@ public class MainWindow extends JFrame {
         JButton resetButton = new JButton("Clear");
         resetButton.setBounds(500, 700, 200, 50);
         this.add(resetButton);
+        //Add timer label
+        JLabel timerLabel = new JLabel("Time (mil)  " + 0.0);
+        timerLabel.setBounds(500, 750, 200,50);
+        this.add(timerLabel);
 
         LegoSet[] tempArray = CSVParser.parseCSVtoLegoSet(dataSetFilePath);
         //Parse data into custom ArrayList
@@ -115,6 +119,7 @@ public class MainWindow extends JFrame {
         //Reset Button
         resetButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                timerLabel.setText("Time (mil) 0.0");
                 String[] arrOut = new String[1];
                 arrOut[0] = "";
                 listOutput.setListData(arrOut);
@@ -125,56 +130,88 @@ public class MainWindow extends JFrame {
         //Linked list
         buttonLinkedBub.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 LinkedList<LegoSet> outputLinkedList = SortingTemp.bubbleSort(inputLinkedList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayStringsLegoSets(outputLinkedList));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
 
             }
         });
         buttonLinkedQui.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 LinkedList<LegoSet> outputLinkedList = SortingTemp.sort(inputLinkedList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayStringsLegoSets(outputLinkedList));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
 
             }
         });
         buttonLinkedJump.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 Comparable<?> result = SearchTemp.jumpSearchLegoSetByName(textField.getText() ,inputLinkedList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayOneSearchResultString(result));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
             }
         });
         buttonLinkedBin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 Comparable<?> result = SearchTemp.binarySearchLegoSetByName(textField.getText() ,inputLinkedList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayOneSearchResultString(result));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
             }
         });
 
         //Arraylist
         buttonArrayBub.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 CustomArrayList<LegoSet> outputArray = SortingTemp.bubbleSort(inputArrayList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayStringsLegoSets(outputArray));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
 
             }
         });
         buttonArrayQui.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 CustomArrayList<LegoSet> outputArray = SortingTemp.sort(inputArrayList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayStringsLegoSets(outputArray));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
 
             }
         });
         buttonArrayJump.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 Comparable<?> result = SearchTemp.jumpSearchLegoSetByName(textField.getText(), inputArrayList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayOneSearchResultString(result));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
             }
         });
         buttonArrayBin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                long startTime = System.nanoTime();
                 Comparable<?> result = SearchTemp.binarySearchLegoSetByName(textField.getText(), inputArrayList);
+                long endTime = System.nanoTime();
                 listOutput.setListData(getArrayOneSearchResultString(result));
+                long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+                timerLabel.setText("Time (mil) " + elapsedTimeInMillis);
             }
         });
 
